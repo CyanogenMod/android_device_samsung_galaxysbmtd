@@ -43,8 +43,8 @@ TARGET_BOOTLOADER_BOARD_NAME := aries
 
 # Releasetools
 TARGET_PROVIDES_RELEASETOOLS := true
-TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := ./device/samsung/galaxysb/releasetools/galaxys_ota_from_target_files
-TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := ./device/samsung/galaxysb/releasetools/galaxys_img_from_target_files
+TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := ./device/samsung/galaxysb/releasetools/galaxysb_ota_from_target_files
+TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := ./device/samsung/galaxysb/releasetools/galaxysb_img_from_target_files
 
 # Camera
 USE_CAMERA_STUB := false
