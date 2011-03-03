@@ -30,8 +30,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full.mk)
 PRODUCT_LOCALES += hdpi
 
 # Discard inherited values and use our own instead.
-PRODUCT_NAME := full_galaxys
-PRODUCT_DEVICE := galaxys
+PRODUCT_NAME := full_galaxysb
+PRODUCT_DEVICE := galaxysb
 PRODUCT_BRAND := Samsung
 PRODUCT_MANUFACTURER := Samsung
 PRODUCT_MODEL := GT-I9000B
