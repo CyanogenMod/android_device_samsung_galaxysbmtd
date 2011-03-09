@@ -48,15 +48,18 @@ PRODUCT_COPY_FILES := \
 
 # Init files
 PRODUCT_COPY_FILES += \
+	device/samsung/galaxysb/init.rc:root/init.rc \
 	device/samsung/galaxysb/init.aries.rc:root/init.aries.rc \
 	device/samsung/galaxysb/ueventd.aries.rc:root/ueventd.aries.rc \
-        device/samsung/galaxysb/recovery.rc:root/recovery.rc
+	device/samsung/galaxysb/mmcwait.sh:recovery/root/sbin/mmcwait.sh \
+	device/samsung/galaxysb/setupenv.sh:recovery/root/sbin/setupenv.sh
+
 
 # Recovery Files
 PRODUCT_COPY_FILES += \
-	device/samsung/galaxysb/init.aries.rc:recovery/root/init.aries.rc \
-	device/samsung/galaxysb/ueventd.aries.rc:recovery/root/ueventd.aries.rc \
-        device/samsung/galaxysb/recovery.rc:recovery/root/recovery.rc
+   device/samsung/galaxysb/recovery.rc:recovery/root/recovery.rc \
+   device/samsung/galaxysb/fbsetup.sh:recovery/root/sbin/fbsetup.sh
+
 
 # Prebuilt kl keymaps
 PRODUCT_COPY_FILES += \
@@ -97,10 +100,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	libcamera \
 	libstagefrighthw
-
-# Input device calibration files
-PRODUCT_COPY_FILES += \
-	device/samsung/galaxysb/mxt224_ts_input.idc:system/usr/idc/mxt224_ts_input.idc
 
 # apns config file
 PRODUCT_COPY_FILES += \
@@ -151,21 +150,33 @@ PRODUCT_LOCALES := hdpi
 
 # kernel modules
 PRODUCT_COPY_FILES += \
-	device/samsung/galaxysb/bcm4329.ko:system/modules/bcm4329.ko \
-	device/samsung/galaxysb/cifs.ko:system/modules/cifs.ko \
-	device/samsung/galaxysb/tun.ko:system/modules/tun.ko
+	out/target/product/galaxysb/kernel_build/drivers/net/wireless/bcm4329/bcm4329.ko:system/modules/bcm4329.ko \
+	out/target/product/galaxysb/kernel_build/fs/cifs/cifs.ko:system/modules/cifs.ko \
+	out/target/product/galaxysb/kernel_build/drivers/net/tun.ko:system/modules/tun.ko
 
 ifeq ($(TARGET_PREBUILT_ZIMAGE),)
-LOCAL_ZIMAGE := device/samsung/galaxysb/zImage
+LOCAL_ZIMAGE = out/target/product/galaxysb/kernel
 else
 LOCAL_ZIMAGE := $(TARGET_PREBUILT_ZIMAGE)
 endif
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_ZIMAGE):zImage
+out/target/product/galaxysb/kernel_build/drivers/net/wireless/bcm4329/bcm4329.ko: $(LOCAL_ZIMAGE)
+out/target/product/galaxysb/kernel_build/fs/cifs/cifs.ko: $(LOCAL_ZIMAGE)
+out/target/product/galaxysb/kernel_build/drivers/net/tun.ko: $(LOCAL_ZIMAGE)
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_ZIMAGE):kernel
+.PHONY: build_kernel
+
+out/target/product/galaxysb/kernel_build/.config:
+	$(hide) mkdir -p $(PRODUCT_OUT)/kernel_build
+	$(hide) $(MAKE) -C kernel/samsung/2.6.35 O=$(ANDROID_BUILD_TOP)/$(PRODUCT_OUT)/kernel_build aries_galaxysb_defconfig
+
+out/target/product/galaxysb/kernel: out/target/product/galaxysb/recovery.img out/target/product/galaxysb/kernel_build/.config build_kernel
+	@echo "BUILDING KERNEL"
+	@echo "recovery.img size: `ls -l out/target/product/galaxysb/recovery.img`"
+	$(hide) $(MAKE) -C kernel/samsung/2.6.35 O=$(ANDROID_BUILD_TOP)/$(PRODUCT_OUT)/kernel_build CROSS_COMPILE=$(ANDROID_BUILD_TOP)/$(subst -gcc,-,$(TARGET_CC))
+	$(hide) $(ACP) $(PRODUCT_OUT)/kernel_build/arch/arm/boot/zImage $(PRODUCT_OUT)/kernel
+
+
 
 # See comment at the top of this file. This is where the other
 # half of the device-specific product definition file takes care
