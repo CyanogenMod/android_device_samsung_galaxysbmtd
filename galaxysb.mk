@@ -130,7 +130,7 @@ PRODUCT_PROPERTY_OVERRIDES := \
 # be reachable from resources or other mechanisms.
 PRODUCT_PROPERTY_OVERRIDES += \
        wifi.interface=eth0 \
-       wifi.supplicant_scan_interval=15 \
+       wifi.supplicant_scan_interval=60 \
        dalvik.vm.heapsize=32m
 
 # enable Google-specific location features,
