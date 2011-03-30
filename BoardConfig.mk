@@ -40,10 +40,8 @@ TARGET_PROVIDES_INIT := true
 TARGET_PROVIDES_INIT_TARGET_RC := true
 TARGET_BOARD_PLATFORM := s5pv210
 TARGET_BOOTLOADER_BOARD_NAME := aries
+TARGET_RECOVERY_INITRC := device/samsung/galaxysb/recovery.rc
 BOARD_PROVIDES_BOOTMODE := true
-
-TARGET_ROOT_IS_RECOVERY := true
-TARGET_BOOT_IS_RAMDISK := true
 
 # Releasetools
 TARGET_PROVIDES_RELEASETOOLS := true
@@ -100,6 +98,8 @@ BOARD_HAS_MTD_CACHE := true
 BOARD_HAS_SDCARD_INTERNAL := true
 BOARD_SDCARD_DEVICE_INTERNAL := /dev/block/mmcblk0p1
 BOARD_HAS_DOWNLOAD_MODE := true
+BOARD_USES_INITRAMFS := true
+BOARD_USES_COMBINED_RECOVERY := true
 
 # Include aries specific stuff
 -include device/samsung/common/aries.mk

@@ -57,7 +57,6 @@ PRODUCT_COPY_FILES += \
 
 # Recovery Files
 PRODUCT_COPY_FILES += \
-   device/samsung/galaxysb/recovery.rc:recovery/root/recovery.rc \
    device/samsung/galaxysb/fbsetup.sh:recovery/root/sbin/fbsetup.sh
 
 
@@ -178,9 +177,8 @@ out/target/product/galaxysb/kernel_build/.config:
 	$(hide) mkdir -p $(PRODUCT_OUT)/kernel_build
 	$(hide) $(MAKE) -C kernel/samsung/2.6.35 O=$(ANDROID_BUILD_TOP)/$(PRODUCT_OUT)/kernel_build aries_galaxysb_defconfig
 
-out/target/product/galaxysb/kernel: out/target/product/galaxysb/recovery.img out/target/product/galaxysb/kernel_build/.config build_kernel
+out/target/product/galaxysb/kernel: out/target/product/galaxysb/recovery.cpio out/target/product/galaxysb/kernel_build/.config build_kernel
 	@echo "BUILDING KERNEL"
-	@echo "recovery.img size: `ls -l out/target/product/galaxysb/recovery.img`"
 	$(hide) $(MAKE) -C kernel/samsung/2.6.35 O=$(ANDROID_BUILD_TOP)/$(PRODUCT_OUT)/kernel_build CROSS_COMPILE=$(ANDROID_BUILD_TOP)/$(subst -gcc,-,$(TARGET_CC))
 	$(hide) $(ACP) $(PRODUCT_OUT)/kernel_build/arch/arm/boot/zImage $(PRODUCT_OUT)/kernel
 
