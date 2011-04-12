@@ -25,3 +25,21 @@ class EdifyGenerator(edify_generator.EdifyGenerator):
       """Unpack a given file from the OTA package into the given
       destination file."""
       self.script.append('package_extract_file("%s", "%s");' % (src, dst))
+
+    def WriteBMLoverMTD(self, partition, partition_start_block, reservoirpartition, reservoir_start_block, image):
+      """Write the given package file into the given partition."""
+
+      args = {'partition': partition, 'partition_start_block': partition_start_block, 'reservoirpartition': reservoirpartition, 'reservoir_start_block': reservoir_start_block, 'image': image}
+
+      self.script.append(
+            ('package_extract_file("bml_over_mtd", "/tmp/bml_over_mtd");\n'
+             'set_perm(0, 0, 0777, "/tmp/bml_over_mtd");'))        
+      self.script.append(
+            ('package_extract_file("bml_over_mtd.sh", "/tmp/bml_over_mtd.sh");\n'
+             'set_perm(0, 0, 0777, "/tmp/bml_over_mtd.sh");'))
+      self.script.append(
+            ('assert(package_extract_file("%(image)s", "/tmp/%(partition)s.img"),\n'
+             '       run_program("/tmp/bml_over_mtd.sh", "%(partition)s", "%(partition_start_block)s", "%(reservoirpartition)s", "%(reservoir_start_block)s", "/tmp/%(partition)s.img"),\n'
+             '       delete("/tmp/%(partition)s.img"));') % args)
+
+

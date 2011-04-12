@@ -20,6 +20,7 @@ import galaxysb_common as common
 
 LOCAL_DIR = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 RELEASETOOLS_DIR = os.path.abspath(os.path.join(LOCAL_DIR, '../../../build/tools/releasetools'))
+UTILITIES_DIR = os.path.abspath(os.path.join(LOCAL_DIR, '../../../out/target/product/galaxysb/utilities'))
 
 # Add releasetools directory to python path
 sys.path.append(RELEASETOOLS_DIR)
@@ -36,6 +37,11 @@ __doc__ = ota_from_target_files.__doc__
 
 def CopyBootFiles(input_zip, output_zip):
     output_zip.writestr("zImage", input_zip.read("BOOT/kernel"))
+
+def CopyBMLoverMTD(output_zip):	
+    """Copy the bml_over_mtd utility and script to the output."""
+    output_zip.write(os.path.join(UTILITIES_DIR, "bml_over_mtd"),"bml_over_mtd")
+    output_zip.write(os.path.join(LOCAL_DIR, "bml_over_mtd.sh"),"bml_over_mtd.sh")
 
 def WriteFullOTAPackage(input_zip, output_zip):
   # TODO: how to determine this?  We don't know what version it will
@@ -93,9 +99,10 @@ def WriteFullOTAPackage(input_zip, output_zip):
   script.RunVerifyCachePartitionSize()
 
   CopyBootFiles(input_zip, output_zip)
+  CopyBMLoverMTD(output_zip)
 
   script.ShowProgress(0.2, 10)
-  script.WriteRawImage("/boot", "zImage")
+  script.WriteBMLoverMTD("boot", "72", "reservoir", "2004", "zImage")
 
   script.ShowProgress(0.1, 0)
   device_specific.FullOTA_InstallEnd()
