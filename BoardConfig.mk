@@ -100,6 +100,7 @@ BOARD_SDCARD_DEVICE_INTERNAL := /dev/block/mmcblk0p1
 BOARD_HAS_DOWNLOAD_MODE := true
 BOARD_USES_INITRAMFS := true
 BOARD_USES_COMBINED_RECOVERY := true
+BOARD_USES_BML_OVER_MTD := true
 
 # Include aries specific stuff
 -include device/samsung/common/aries.mk
