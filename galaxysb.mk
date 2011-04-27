@@ -51,14 +51,7 @@ PRODUCT_COPY_FILES += \
 	device/samsung/galaxysb/init.rc:root/init.rc \
 	device/samsung/galaxysb/init.aries.rc:root/init.aries.rc \
 	device/samsung/galaxysb/ueventd.aries.rc:root/ueventd.aries.rc \
-	device/samsung/galaxysb/mmcwait.sh:recovery/root/sbin/mmcwait.sh \
 	device/samsung/galaxysb/setupenv.sh:recovery/root/sbin/setupenv.sh
-
-
-# Recovery Files
-PRODUCT_COPY_FILES += \
-   device/samsung/galaxysb/fbsetup.sh:recovery/root/sbin/fbsetup.sh
-
 
 # Prebuilt kl keymaps
 PRODUCT_COPY_FILES += \
