@@ -305,6 +305,14 @@ service dumpstate /system/bin/dumpstate -s
     disabled
     oneshot
 
+service orientationd /system/vendor/bin/orientationd
+    user compass
+    group input
+
+service geomagneticd /system/vendor/bin/geomagneticd
+    user compass
+    group system input
+
 service console /system/bin/sh
     console
     disabled
