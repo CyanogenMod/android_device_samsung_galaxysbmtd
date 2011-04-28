@@ -150,9 +150,9 @@ PRODUCT_LOCALES := hdpi
 
 # kernel modules
 PRODUCT_COPY_FILES += \
-	out/target/product/galaxysb/kernel_build/drivers/net/wireless/bcm4329/bcm4329.ko:system/modules/bcm4329.ko \
-	out/target/product/galaxysb/kernel_build/fs/cifs/cifs.ko:system/modules/cifs.ko \
-	out/target/product/galaxysb/kernel_build/drivers/net/tun.ko:system/modules/tun.ko
+	out/target/product/galaxysb/kernel_build/drivers/net/wireless/bcm4329/bcm4329.ko:system/lib/modules/bcm4329.ko \
+	out/target/product/galaxysb/kernel_build/fs/cifs/cifs.ko:system/lib/modules/cifs.ko \
+	out/target/product/galaxysb/kernel_build/drivers/net/tun.ko:system/lib/modules/tun.ko
 
 ifeq ($(TARGET_PREBUILT_ZIMAGE),)
 LOCAL_ZIMAGE = out/target/product/galaxysb/kernel
