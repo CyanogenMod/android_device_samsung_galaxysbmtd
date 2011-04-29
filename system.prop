@@ -5,3 +5,8 @@
 rild.libpath=/vendor/lib/libsec-ril.so
 rild.libargs=-d /dev/ttyS0
 ro.sf.lcd_density=240
+
+# The Samsung sensor library is giving back a bad 
+# max range for the light sensor, override here
+ro.sensors.light.maxrange=15000
+
