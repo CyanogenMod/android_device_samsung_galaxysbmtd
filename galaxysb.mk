@@ -117,6 +117,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES := \
     ro.opengles.version=131072
 
+# The Samsung sensor library is giving back a bad 
+# max range for the light sensor, override here
+PRODUCT_PROPERTY_OVERRIDES := \
+    ro.sensors.light.maxrange=15000
+
 # These are the hardware-specific settings that are stored in system properties.
 # Note that the only such settings should be the ones that are too low-level to
 # be reachable from resources or other mechanisms.
