@@ -155,9 +155,9 @@ PRODUCT_LOCALES := hdpi
 
 # kernel modules
 PRODUCT_COPY_FILES += \
-    device/samsung/galaxysb/bcm4329.ko:system/modules/bcm4329.ko \
-    device/samsung/galaxysb/cifs.ko:system/modules/cifs.ko \
-    device/samsung/galaxysb/tun.ko:system/modules/tun.ko
+    device/samsung/galaxysb/bcm4329.ko:system/lib/modules/bcm4329.ko \
+    device/samsung/galaxysb/cifs.ko:system/lib/modules/cifs.ko \
+    device/samsung/galaxysb/tun.ko:system/lib/modules/tun.ko
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
     LOCAL_KERNEL := device/samsung/galaxysb/kernel
