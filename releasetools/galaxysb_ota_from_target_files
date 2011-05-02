@@ -20,6 +20,7 @@ import galaxysb_common as common
 
 LOCAL_DIR = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 RELEASETOOLS_DIR = os.path.abspath(os.path.join(LOCAL_DIR, '../../../build/tools/releasetools'))
+TARGET_DIR = os.path.abspath(os.path.join(LOCAL_DIR, '../../../out/target/product/galaxysb'))
 UTILITIES_DIR = os.path.abspath(os.path.join(LOCAL_DIR, '../../../out/target/product/galaxysb/utilities'))
 
 # Add releasetools directory to python path
@@ -36,7 +37,7 @@ import galaxysb_edify_generator as edify_generator
 __doc__ = ota_from_target_files.__doc__
 
 def CopyBootFiles(input_zip, output_zip):
-    output_zip.writestr("zImage", input_zip.read("BOOT/kernel"))
+    output_zip.write(os.path.join(TARGET_DIR, "boot.img"),"boot.img")
 
 def CopyBMLoverMTD(output_zip):	
     """Copy the bml_over_mtd utility and script to the output."""
@@ -102,7 +103,7 @@ def WriteFullOTAPackage(input_zip, output_zip):
   CopyBMLoverMTD(output_zip)
 
   script.ShowProgress(0.2, 10)
-  script.WriteBMLoverMTD("boot", "72", "reservoir", "2004", "zImage")
+  script.WriteBMLoverMTD("boot", "72", "reservoir", "2004", "boot.img")
 
   script.ShowProgress(0.1, 0)
   device_specific.FullOTA_InstallEnd()
