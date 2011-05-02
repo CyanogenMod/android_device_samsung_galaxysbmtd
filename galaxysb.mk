@@ -86,7 +86,8 @@ PRODUCT_PACKAGES += \
 # Misc other modules
 PRODUCT_PACKAGES += \
 	lights.aries \
-	overlay.aries
+	overlay.aries \
+	sensors.aries
 
 # Libs
 PRODUCT_PACKAGES += \
