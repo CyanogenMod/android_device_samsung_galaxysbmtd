@@ -318,7 +318,7 @@ service dumpstate /system/bin/dumpstate -s
 
 service orientationd /system/vendor/bin/orientationd
     user compass
-    group input
+    group system input
 
 service geomagneticd /system/vendor/bin/geomagneticd
     user compass
