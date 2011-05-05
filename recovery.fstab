@@ -12,4 +12,3 @@
 /data		ext4		/dev/block/mmcblk0p2
 
 /emmc		vfat		/dev/block/mmcblk1p1
-/sd-ext		ext4		/dev/block/mmcblk1p2
