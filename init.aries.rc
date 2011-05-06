@@ -324,6 +324,10 @@ service geomagneticd /system/vendor/bin/geomagneticd
     user compass
     group system input
 
+service tvout /system/bin/tvoutserver
+    user system
+    group graphics
+
 service console /system/bin/sh
     console
     disabled
