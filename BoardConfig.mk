@@ -102,7 +102,7 @@ BOARD_USES_BML_OVER_MTD := true
 BOARD_USES_CUSTOM_BOOTIMG := true
 BOARD_CUSTOM_BOOTIMG_MK := device/samsung/common/aries/shbootimg.mk
 TARGET_NO_RECOVERY := true
-TARGET_RECOVERY_PRE_COMMAND="echo 1 > /cache/.startrecovery"
+TARGET_RECOVERY_PRE_COMMAND="echo 1 > /cache/.startrecovery; sync;"
 
 # Include aries specific stuff
 -include device/samsung/common/aries.mk
