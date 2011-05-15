@@ -37,6 +37,9 @@ loglevel 9
     mkdir /sdcard 0000 system system
     mkdir /emmc 0000 system system
 
+# for emergencyboot
+    symlink /sdcard /mnt/sdcard
+
 # Create cgroup mount point for cpu accounting
     mkdir /acct
     mount cgroup none /acct cpuacct
