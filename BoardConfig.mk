@@ -33,7 +33,6 @@ TARGET_GLOBAL_CFLAGS += -mtune=cortex-a8 -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a8 -mfpu=neon -mfloat-abi=softfp
 
 TARGET_NO_BOOTLOADER := true
-TARGET_NO_KERNEL := false
 TARGET_NO_RADIOIMAGE := true
 
 TARGET_PROVIDES_INIT := true
