@@ -14,7 +14,7 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifeq ($(TARGET_DEVICE),galaxysb)
+ifeq ($(TARGET_DEVICE),galaxysbmtd)
 
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := s3c-keypad.kcm
@@ -38,3 +38,5 @@ include $(call all-makefiles-under,$(LOCAL_PATH))
 endif
 
 endif
+
+

@@ -26,4 +26,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/full_galaxysb.mk
+    $(LOCAL_DIR)/full_galaxysbmtd.mk
