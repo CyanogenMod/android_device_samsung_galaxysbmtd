@@ -41,7 +41,7 @@ TARGET_BOARD_PLATFORM := s5pv210
 TARGET_BOOTLOADER_BOARD_NAME := aries
 TARGET_RECOVERY_INITRC := device/samsung/galaxysbmtd/recovery.rc
 
-BOARD_MOBILEDATA_INTERFACE_NAME = "svnet0"
+BOARD_MOBILEDATA_INTERFACE_NAME = "pdp0"
 
 # Releasetools
 TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := ./device/samsung/aries-common/releasetools/aries_ota_from_target_files
@@ -66,6 +66,7 @@ BOARD_SECOND_CAMERA_DEVICE := /dev/video2
 # FM Radio
 BOARD_HAVE_FM_RADIO := true
 BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
+BOARD_FM_DEVICE := si4709
 
 BOARD_NAND_PAGE_SIZE := 4096 -s 128
 BOARD_KERNEL_BASE := 0x32000000
@@ -101,4 +102,4 @@ TARGET_RECOVERY_PRE_COMMAND="echo 1 > /cache/.startrecovery; sync;"
 # Include aries specific stuff
 -include device/samsung/aries-common/Android.mk
 
-TARGET_OTA_ASSERT_DEVICE := aries,galaxysb,galaxysbmtd,GT-I9000B
+TARGET_OTA_ASSERT_DEVICE := galaxysb,galaxysbmtd,GT-I9000B
