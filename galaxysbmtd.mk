@@ -50,6 +50,7 @@ PRODUCT_COPY_FILES := \
 PRODUCT_COPY_FILES += \
 	device/samsung/aries-common/init.rc:root/init.rc \
 	device/samsung/aries-common/init.aries.rc:root/init.aries.rc \
+	device/samsung/aries-common/lpm.rc:root/lpm.rc \
 	device/samsung/aries-common/ueventd.aries.rc:root/ueventd.aries.rc \
 	device/samsung/aries-common/setupenv.sh:recovery/root/sbin/setupenv.sh
 
@@ -98,6 +99,10 @@ PRODUCT_PACKAGES += \
 # apns config file
 PRODUCT_COPY_FILES += \
         vendor/cyanogen/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml
+
+# Bluetooth MAC Address
+PRODUCT_PACKAGES += \
+	bdaddr_read
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
@@ -153,10 +158,9 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 PRODUCT_LOCALES := hdpi
 
 # kernel modules
-PRODUCT_COPY_FILES += \
-    device/samsung/galaxysbmtd/bcm4329.ko:system/lib/modules/bcm4329.ko \
-    device/samsung/galaxysbmtd/cifs.ko:system/lib/modules/cifs.ko \
-    device/samsung/galaxysbmtd/tun.ko:system/lib/modules/tun.ko
+PRODUCT_COPY_FILES += $(foreach module,\
+	$(wildcard device/samsung/galaxysbmtd/*.ko),\
+	$(module):system/lib/modules/$(notdir $(module)))
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
     LOCAL_KERNEL := device/samsung/galaxysbmtd/kernel
@@ -166,6 +170,9 @@ endif
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
+
+PRODUCT_COPY_FILES += \
+	device/samsung/aries-common/updater.sh:updater.sh
 
 # See comment at the top of this file. This is where the other
 # half of the device-specific product definition file takes care
