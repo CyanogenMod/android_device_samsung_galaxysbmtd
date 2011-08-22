@@ -39,7 +39,7 @@ TARGET_PROVIDES_INIT := true
 TARGET_PROVIDES_INIT_TARGET_RC := true
 TARGET_BOARD_PLATFORM := s5pv210
 TARGET_BOOTLOADER_BOARD_NAME := aries
-TARGET_RECOVERY_INITRC := device/samsung/galaxysbmtd/recovery.rc
+TARGET_RECOVERY_INITRC := device/samsung/aries-common/recovery.rc
 
 BOARD_MOBILEDATA_INTERFACE_NAME = "pdp0"
 
@@ -94,12 +94,12 @@ BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
 
 # Recovery
 TARGET_USERIMAGES_USE_EXT4 := true
-BOARD_HAS_NO_SELECT_BUTTON := true
+BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/galaxysbmtd/recovery/recovery_ui.c
 BOARD_USES_BML_OVER_MTD := true
 BOARD_CUSTOM_BOOTIMG_MK := device/samsung/aries-common/shbootimg.mk
-TARGET_RECOVERY_PRE_COMMAND="echo 1 > /cache/.startrecovery; sync;"
+TARGET_RECOVERY_PRE_COMMAND := "echo 1 > /cache/.startrecovery; sync;"
 
 # Include aries specific stuff
 -include device/samsung/aries-common/Android.mk
 
-TARGET_OTA_ASSERT_DEVICE := galaxysb,galaxysbmtd,GT-I9000B
+TARGET_OTA_ASSERT_DEVICE := galaxys,galaxysbmtd,GT-I9000B
