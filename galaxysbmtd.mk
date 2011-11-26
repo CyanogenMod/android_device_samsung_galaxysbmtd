@@ -48,7 +48,6 @@ PRODUCT_COPY_FILES := \
 
 # Init files
 PRODUCT_COPY_FILES += \
-	device/samsung/aries-common/init.rc:root/init.rc \
 	device/samsung/aries-common/init.aries.rc:root/init.aries.rc \
 	device/samsung/aries-common/lpm.rc:root/lpm.rc \
 	device/samsung/aries-common/ueventd.aries.rc:root/ueventd.aries.rc \
@@ -104,6 +103,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
 	bdaddr_read
 
+# Device-specific packages
+PRODUCT_PACKAGES += \
+	SamsungServiceMode \
+	AriesParts
+
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
 	frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
@@ -146,16 +150,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Default=true for development builds, set by android buildsystem.
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.kernel.android.checkjni=0 \
-    dalvik.vm.checkjni=false
+    dalvik.vm.checkjni=false \
+    persist.sys.vold.switchexternal=1
 
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
-
-# Screen density is actually considered a locale (since it is taken into account
-# the the build-time selection of resources). The product definitions including
-# this file must pay attention to the fact that the first entry in the final
-# PRODUCT_LOCALES expansion must not be a density.
-PRODUCT_LOCALES := hdpi
 
 # kernel modules
 PRODUCT_COPY_FILES += $(foreach module,\

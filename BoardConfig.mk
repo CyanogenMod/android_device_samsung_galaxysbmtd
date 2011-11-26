@@ -36,7 +36,6 @@ TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
 TARGET_PROVIDES_INIT := true
-TARGET_PROVIDES_INIT_TARGET_RC := true
 TARGET_BOARD_PLATFORM := s5pv210
 TARGET_BOOTLOADER_BOARD_NAME := aries
 TARGET_RECOVERY_INITRC := device/samsung/aries-common/recovery.rc
@@ -103,4 +102,4 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 # Include aries specific stuff
 -include device/samsung/aries-common/Android.mk
 
-TARGET_OTA_ASSERT_DEVICE := galaxys,galaxysbmtd,GT-I9000B
+TARGET_OTA_ASSERT_DEVICE := galaxysb,galaxysbmtd,GT-I9000B
