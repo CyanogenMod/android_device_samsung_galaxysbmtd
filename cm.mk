@@ -1,4 +1,4 @@
-$(call inherit-product, device/samsung/galaxysmtd/full_galaxysmtd.mk)
+$(call inherit-product, device/samsung/galaxysbmtd/full_galaxysbmtd.mk)
 
 # Release name
 PRODUCT_RELEASE_NAME := GalaxyS_B
