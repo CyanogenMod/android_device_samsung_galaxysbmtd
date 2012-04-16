@@ -20,8 +20,8 @@
 #Video Devices
 BOARD_SECOND_CAMERA_DEVICE := /dev/video2
 
-#Prebuilt Kernel
-TARGET_PREBUILT_KERNEL := device/samsung/galaxysbmtd/kernel
+# Kernel Config
+TARGET_KERNEL_CONFIG := cyanogenmod_galaxysbmtd_defconfig
 
 # FM Radio
 BOARD_HAVE_FM_RADIO := true
